@@ -1,0 +1,53 @@
+openapi: 3.0.0
+
+paths:
+  /voter/{voter_id}:
+    get:
+      summary: Returns voter info
+      parameters:
+        - name: voter_id
+          in: path
+          required: true
+          description: voter ID
+        - in: query
+          name: date
+          required: false
+          description: date
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getVoter/invocations"
+        httpMethod: "POST"
+    put:
+      summary: Create or update new record for voter
+      parameters:
+        - name: voter_id
+          in: path
+          required: true
+          description: voter ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name_voter:
+                  type: string
+                city:
+                  type: string
+                school:
+                  type: string
+                booth:
+                  type: string
+                timeOfArrival:
+                  type: string
+                country:
+                  type: string
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putVoter/invocations"
+        httpMethod: "POST"
+
+ 

@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform:
+- AWS::Serverless-2016-10-31
+Description: Election Day
+Resources:
+  GetVoter:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getVoter
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.getVoter
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones/bdac7a0330fa0b057ed281b98275d6c8
+      Policies:
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        GetVoter:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /voter/{voter_id}
+            Method: GET
+  PutVoter:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putVoter
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.putVoter
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones/bdac7a0330fa0b057ed281b98275d6c8
+      Policies:
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        PutVoter:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /voter/{voter_id}
+            Method: PUT
+  MyAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: my-voters-api
+      StageName: prod
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: s3://proyecto-elecciones/5bf02476db958fc68d2730ecd85271a0
+  MyVotersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: my-voters-table-app
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      KeySchema:
+      - AttributeName: pk
+        KeyType: HASH
+      - AttributeName: sk
+        KeyType: RANGE
+      AttributeDefinitions:
+      - AttributeName: pk
+        AttributeType: S
+      - AttributeName: sk
+        AttributeType: S
