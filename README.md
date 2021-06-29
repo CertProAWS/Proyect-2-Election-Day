@@ -1,6 +1,6 @@
 # Project #2 Election Day
 
-##### Participants: 4
+#### Participants: 4
 There is a growing concern towards the transparency and integrity of elections in the country you live in. The government wants to implement a software solution that helps increase the trust in the electoral system.
 
 The whole country votes through ballot papers which are stored in ballot boxes. Once all votes are cast, they are counted in a whiteboard. With the correct results they create the official document for the city/school/booth and send it to the central government for counting.
