@@ -10,7 +10,7 @@ One of the mayor concerns of transparency is the step where the votes are copied
 </br>
  </br>
  <p align="center">
-    <img src="https://github.com/AleS900/prueba/blob/master/assets/Electionay-Revised.jpg" />
+    <img src="https://github.com/AleS900/prueba/blob/master/assets/Electionay-Revised.jpg" =250x250/>
  </p>
 
 
