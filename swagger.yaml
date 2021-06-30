@@ -49,5 +49,53 @@ paths:
         uri:
           Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putVoter/invocations"
         httpMethod: "POST"
+  /absentee/{absentee_id}:
+    get:
+      summary: Returns absentee info
+      parameters:
+        - name: absentee_id
+          in: path
+          required: true
+          description: absentee ID
+        - in: query
+          name: date
+          required: false
+          description: date
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getAbsentee/invocations"
+        httpMethod: "POST"
+    put:
+      summary: update absentee
+      parameters:
+        - name: absentee_id
+          in: path
+          required: true
+          description: absentee ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name_voter:
+                  type: string
+                city:
+                  type: string
+                school:
+                  type: string
+                booth:
+                  type: string
+                country:
+                  type: string
+                absentee:
+                  type: boolean
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putAbsentee/invocations"
+        httpMethod: "POST"
 
  

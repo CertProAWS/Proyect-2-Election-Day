@@ -45,7 +45,48 @@ Resources:
             RestApiId: !Ref MyAPI
             Path: "/voter/{voter_id}"
             Method: PUT
+  
+  GetAbsentee:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getAbsentee
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.getAbsentee
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/absentee/{absentee_id}"
+            Method: GET
  
+  PutAbsentee:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putAbsentee
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.putAbsentee
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/absentee/{absentee_id}"
+            Method: PUT
   
   MyAPI:
     Type: AWS::Serverless::Api
