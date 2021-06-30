@@ -8,7 +8,7 @@ The whole country votes through ballot papers which are stored in ballot boxes. 
 One of the mayor concerns of transparency is the step where the votes are copied over, there is a high chance this step is done incorrectly, either by mistake or purposefully.
 
  <p align="center">
-    <img src="https://github.com/AleS900/prueba/blob/master/assets/Electionay-Revised.jpg" width="600" height="450"/>
+    <img src="https://github.com/AleS900/prueba/blob/master/assets/vi.jpg" width="600" height="450"/>
  </p>
 
 
