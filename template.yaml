@@ -87,12 +87,28 @@ Resources:
             RestApiId: !Ref MyAPI
             Path: "/absentee/{absentee_id}"
             Method: PUT
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+        BucketName: election-day-123
+        WebsiteConfiguration: 
+          IndexDocument: index.html
+          ErrorDocument: index.html
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
   
   MyAPI:
     Type: AWS::Serverless::Api
     Properties:
       Name: my-voters-api
       StageName: prod
+      Cors:
+        AllowMethods: "'POST,OPTIONS, GET, PUT'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
       DefinitionBody:
         Fn::Transform:
           Name: AWS::Include
