@@ -116,3 +116,162 @@ Resources:
           AttributeType: S
         - AttributeName: sk
           AttributeType: S
+  
+  #Denisse:
+  Description: My Lambda Resources
+Resources:
+  GetInvalidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getInvalid
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref  MyInvalidationTable
+      Handler: invalido.getInvalid
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref  MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/invalid/{invalido}"
+            Method: GET
+
+  PutInvalidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putInvalid
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref  MyInvalidationTable
+      Handler: invalid.putInvalid
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref  MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/invalid/{invalid_id}"
+            Method: PUT
+            
+  GetCityFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getCity
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref  MyInvalidationTable
+      Handler: city.getCity
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref  MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/city/{city}"
+            Method: GET
+
+  PutCityFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putCity
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref  MyInvalidationTable
+      Handler: city.putCity
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref  MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/city/{city}"
+            Method: PUT
+  
+  GetSchoolFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getSchool
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref  MyInvalidationTable
+      Handler: school.getSchool
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref  MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/school/{school}"
+            Method: GET
+
+  PutSchoolFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putSchool
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref  MyInvalidationTable
+      Handler: school.putSchool
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref  MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/school/{school}"
+            Method: PUT
+
+  MyAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: my-api-invalidation
+      StageName: prod
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: swagger.yaml
+
+  MyInvalidationTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: my-invalidation-table
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+  #

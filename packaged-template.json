@@ -13,7 +13,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getVoter
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones/1728a05fa029ceaec689d75e9d87e6a0
+      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -36,7 +36,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putVoter
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones/1728a05fa029ceaec689d75e9d87e6a0
+      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -59,7 +59,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getAbsentee
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones/1728a05fa029ceaec689d75e9d87e6a0
+      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -82,7 +82,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putAbsentee
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones/1728a05fa029ceaec689d75e9d87e6a0
+      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -104,7 +104,7 @@ Resources:
         Fn::Transform:
           Name: AWS::Include
           Parameters:
-            Location: s3://proyecto-elecciones/59fb167cea8471279b9eba766e065957
+            Location: s3://bucketlabdos/59fb167cea8471279b9eba766e065957
   MyVotersTable:
     Type: AWS::DynamoDB::Table
     Properties:
