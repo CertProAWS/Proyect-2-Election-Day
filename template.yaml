@@ -310,6 +310,47 @@ Resources:
             Method: PUT
   
   
+  # S3Bucket:
+  #   Type: 'AWS::S3::Bucket'
+  #   Properties:
+  #     AccessControl: PublicRead
+  #     BucketName: proyecto-elecciones1
+  #     WebsiteConfiguration:
+  #       IndexDocument: index1.html
+  #       ErrorDocument: index1.html
+  #     PublicAccessBlockConfiguration:
+  #       BlockPublicAcls: false
+  #       BlockPublicPolicy: false
+  #       IgnorePublicAcls: false
+  #       RestrictPublicBuckets: false
+  #     CorsConfiguration:
+  #       CorsRules:
+  #         -
+  #           AllowedOrigins:
+  #             - '*'
+  #           AllowedHeaders:
+  #             - '*'
+  #           AllowedMethods:
+  #             - GET
+  #             - PUT
+  #             - POST
+  #             - DELETE
+  #             - HEAD
+  
+  # PublicBucketPolicy:
+  #   Type: AWS::S3::BucketPolicy
+  #   Properties:
+  #     Bucket: !Ref S3Bucket
+  #     PolicyDocument:
+  #       Version: '2012-10-17'
+  #       Statement:
+  #         - Effect: Allow
+  #           Action:
+  #             - 's3:GetObject'
+  #           Resource:
+  #           - !Join ['/', [!GetAtt [S3Bucket, Arn], '*']]
+  #           Principal: '*'
+  
   MyAPI:
     Type: AWS::Serverless::Api
     Properties:

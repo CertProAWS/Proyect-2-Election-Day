@@ -38,4 +38,5 @@ fi
 if [[ $WEBSITE == 1 ]]
 then
     aws s3 cp website/index.html s3://test-jpg-files/index.html
+    aws s3 cp website/index1.html s3://test-jpg-files/index1.html
 fi
