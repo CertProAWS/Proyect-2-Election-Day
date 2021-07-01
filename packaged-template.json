@@ -13,7 +13,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getVoter
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -36,7 +36,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putVoter
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -59,7 +59,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getAbsentee
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -82,7 +82,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putAbsentee
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -105,7 +105,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getPollingPlace
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -128,7 +128,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putPollingPlace
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -154,7 +154,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getInvalidFunction
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -177,7 +177,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putInvalidFunction
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -203,7 +203,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getDepartment
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -226,7 +226,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putDepartment
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -252,7 +252,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getCity
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -275,7 +275,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putCity
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -301,7 +301,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getSchool
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -324,7 +324,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putSchool
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      CodeUri: s3://proyecto-elecciones1/5709c7f91861f7464fad90d8ad2ba563
       Policies:
       - DynamoDBWritePolicy:
           TableName:
