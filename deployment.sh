@@ -1,7 +1,7 @@
 
 #!/bin/bash
-DEPLOYMENT_BUCKET="proyecto-elecciones"
-STACK_NAME="elecciones"
+DEPLOYMENT_BUCKET="proyecto-elecciones1"
+STACK_NAME="upb-stack-1"
 
 while getopts ":bdp" OPTION; do
     case $OPTION in
@@ -33,4 +33,9 @@ fi
 if [[ $DEPLOY == 1 ]]
 then
     aws cloudformation deploy --template-file packaged-template.json --stack-name $STACK_NAME --capabilities CAPABILITY_NAMED_IAM
+fi
+
+if [[ $WEBSITE == 1 ]]
+then
+    aws s3 cp website/index.html s3://test-jpg-files/index.html
 fi

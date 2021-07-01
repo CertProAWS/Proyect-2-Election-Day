@@ -97,5 +97,53 @@ paths:
         uri:
           Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putAbsentee/invocations"
         httpMethod: "POST"
-
+  /place/{place_id}:
+    get:
+      summary: Place id
+      parameters:
+        - name: place_id
+          in: path
+          required: true
+          description: place ID
+        - in: query
+          name: string
+          schema:
+            type: string
+          required: false
+          description: place info
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getPollingPlace/invocations"
+        httpMethod: "POST"
+    put:
+      summary: put place info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                school:
+                  type: string
+                city:
+                  type: string
+                department:
+                  type: string
+                jpg_link:
+                  type: string
+                country:
+                  type: string
+                number_votes_party_1:
+                  type: number
+                number_votes_party_2:
+                  type: number
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putPollingPlace/invocations"
+        httpMethod: "POST"
+  
+ 
  

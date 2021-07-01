@@ -87,6 +87,51 @@ Resources:
             RestApiId: !Ref MyAPI
             Path: "/absentee/{absentee_id}"
             Method: PUT
+            
+  GetPollingPlace:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getPollingPlace
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.getPollingPlace
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/place/{place_id}"
+            Method: GET
+ 
+  PutPollingPlace:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putPollingPlace
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.putPollingPlace
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MyVotersTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/place/{place_id}"
+            Method: PUT
+  
   
   MyAPI:
     Type: AWS::Serverless::Api
@@ -98,6 +143,16 @@ Resources:
           Name: AWS::Include
           Parameters:
             Location: swagger.yaml
+  #    CorsConfiguration:
+   #       AllowMethods:
+     #       - GET
+       #     - POST
+       #     - DELETE
+       #     - OPTIONS
+     #     AllowHeaders:
+     #       - "*"   
+     #     AllowOrigins: 
+     #       - "*"    
 
   MyVotersTable:
     Type: AWS::DynamoDB::Table
@@ -116,3 +171,25 @@ Resources:
           AttributeType: S
         - AttributeName: sk
           AttributeType: S
+#
+# S3UploadBucket:
+#    Type: AWS::S3::Bucket
+#    Properties:
+#      CorsConfiguration:
+#        CorsRules:
+#        - AllowedHeaders:
+#            - "*"
+#          AllowedMethods:
+#            - GET
+#            - PUT
+#            - HEAD
+#          AllowedOrigins:
+#            - "*"
+#            
+#  Outputs:
+#  APIendpoint:
+#    Description:
+#    Value: !Sub "https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com"
+#  S3UploadBucketName:
+#    Description: 
+#    Value: !Ref 'S3UploadBucket'    
