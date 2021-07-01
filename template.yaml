@@ -132,6 +132,183 @@ Resources:
             Path: "/place/{place_id}"
             Method: PUT
   
+              
+  GetInvalidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getInvalidFunction
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.getInvalidFunction
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/cabina/{cabina_id}"
+            Method: GET
+ 
+  PutInvalidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putInvalidFunction
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.putInvalidFunction
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MyVotersTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/cabina/{cabina_id}"
+            Method: PUT
+            
+  GetDepartment:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getDepartment
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.getDepartment
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/department/{department_id}"
+            Method: GET
+ 
+  PutDepartment:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putDepartment
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.putDepartment
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MyVotersTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/department/{department_id}"
+            Method: PUT
+            
+  GetCity:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getCity
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.getCity
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/city/{city_id}"
+            Method: GET
+ 
+  PutCity:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putCity
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.putCity
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MyVotersTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/city/{city_id}"
+            Method: PUT
+            
+  GetSchool:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getSchool
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.getSchool
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/school/{school_id}"
+            Method: GET
+ 
+  PutSchool:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putSchool
+      Environment:
+        Variables:
+          VOTERS_TABLE: !Ref MyVotersTable
+      Handler: infoElection.putSchool
+      Runtime: python3.6
+      CodeUri: package/
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref MyVotersTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyAPI
+            Path: "/school/{school_id}"
+            Method: PUT
+  
   
   MyAPI:
     Type: AWS::Serverless::Api

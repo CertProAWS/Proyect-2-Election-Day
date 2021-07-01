@@ -13,7 +13,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getVoter
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/1f00b76cefa2eb6127f39d98acca0822
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -36,7 +36,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putVoter
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/1f00b76cefa2eb6127f39d98acca0822
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -59,7 +59,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getAbsentee
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/1f00b76cefa2eb6127f39d98acca0822
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -82,7 +82,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putAbsentee
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/1f00b76cefa2eb6127f39d98acca0822
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -105,7 +105,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.getPollingPlace
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/1f00b76cefa2eb6127f39d98acca0822
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
       Policies:
       - DynamoDBReadPolicy:
           TableName:
@@ -128,7 +128,7 @@ Resources:
             Ref: MyVotersTable
       Handler: infoElection.putPollingPlace
       Runtime: python3.6
-      CodeUri: s3://proyecto-elecciones1/1f00b76cefa2eb6127f39d98acca0822
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
       Policies:
       - DynamoDBWritePolicy:
           TableName:
@@ -144,6 +144,202 @@ Resources:
               Ref: MyAPI
             Path: /place/{place_id}
             Method: PUT
+  GetInvalidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getInvalidFunction
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.getInvalidFunction
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /cabina/{cabina_id}
+            Method: GET
+  PutInvalidFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putInvalidFunction
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.putInvalidFunction
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: MyVotersTable
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /cabina/{cabina_id}
+            Method: PUT
+  GetDepartment:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getDepartment
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.getDepartment
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /department/{department_id}
+            Method: GET
+  PutDepartment:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putDepartment
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.putDepartment
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: MyVotersTable
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /department/{department_id}
+            Method: PUT
+  GetCity:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getCity
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.getCity
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /city/{city_id}
+            Method: GET
+  PutCity:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putCity
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.putCity
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: MyVotersTable
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /city/{city_id}
+            Method: PUT
+  GetSchool:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: getSchool
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.getSchool
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        GetAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /school/{school_id}
+            Method: GET
+  PutSchool:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putSchool
+      Environment:
+        Variables:
+          VOTERS_TABLE:
+            Ref: MyVotersTable
+      Handler: infoElection.putSchool
+      Runtime: python3.6
+      CodeUri: s3://proyecto-elecciones1/90b0be963984d23c5ddb1901ab9c3a8c
+      Policies:
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: MyVotersTable
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyVotersTable
+      Events:
+        PutAbsentee:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /school/{school_id}
+            Method: PUT
   MyAPI:
     Type: AWS::Serverless::Api
     Properties:
@@ -153,7 +349,7 @@ Resources:
         Fn::Transform:
           Name: AWS::Include
           Parameters:
-            Location: s3://proyecto-elecciones1/402be6f40c984d05ea49a43c783fbcda
+            Location: s3://proyecto-elecciones1/927aeec0aae8ee3d41afc5e8798721e7
   MyVotersTable:
     Type: AWS::DynamoDB::Table
     Properties:

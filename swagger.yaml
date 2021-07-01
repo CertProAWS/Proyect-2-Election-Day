@@ -97,6 +97,7 @@ paths:
         uri:
           Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putAbsentee/invocations"
         httpMethod: "POST"
+        
   /place/{place_id}:
     get:
       summary: Place id
@@ -145,5 +146,151 @@ paths:
           Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putPollingPlace/invocations"
         httpMethod: "POST"
   
- 
- 
+  
+  /city/{city_id}:
+    get:
+      summary: City id
+      parameters:
+        - name: city_id
+          in: path
+          required: true
+          description: city ID
+        - in: query
+          name: string
+          required: false
+          description: cabina info
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getCity/invocations"
+        httpMethod: "POST"
+    put:
+      summary: put city info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invalido:
+                  type: boolean
+                department:
+                  type: string
+                city:
+                  type: string
+                school:
+                  type: string
+                resultadoImagen:
+                  type: number
+                resultadoFinal:
+                  type: number
+                ausentes:
+                  type: number
+                votosEmitidos:
+                  type: number
+                votosTotales:
+                  type: number
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putCity/invocations"
+        httpMethod: "POST"
+
+/school/{school_id}:
+    get:
+      summary: School id
+      parameters:
+        - name: school_id
+          in: path
+          required: true
+          description: school ID
+        - in: query
+          name: string
+          required: false
+          description: school info
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getSchool/invocations"
+        httpMethod: "POST"
+    put:
+      summary: put school info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invalido:
+                  type: boolean
+                city:
+                  type: string
+                school:
+                  type: string
+                resultadoImagen:
+                  type: number
+                resultadoFinal:
+                  type: number
+                ausentes:
+                  type: number
+                votosEmitidos:
+                  type: number
+                votosTotales:
+                  type: number
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putSchool/invocations"
+        httpMethod: "POST"
+        
+/department/{department_id}:
+    get:
+      summary: Department id
+      parameters:
+        - name: department_id
+          in: path
+          required: true
+          description: department ID
+        - in: query
+          name: string
+          required: false
+          description: department info
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getDepartment/invocations"
+        httpMethod: "POST"
+    put:
+      summary: put department info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invalido:
+                  type: boolean
+                department:
+                  type: string
+                city:
+                  type: string
+                school:
+                  type: string
+                resultadoImagen:
+                  type: number
+                resultadoFinal:
+                  type: number
+                ausentes:
+                  type: number
+                votosEmitidos:
+                  type: number
+                votosTotales:
+                  type: number
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putDepartment/invocations"
+        httpMethod: "POST"
