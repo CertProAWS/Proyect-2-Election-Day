@@ -36,3 +36,7 @@ There needs to be an API for the government that
 - Shows a count of all invalidated booths by city, sorted by the highest count
 - Shows a count of all invalidated booths by school in a city, sorted by the highest count
 
+# Test Web Pages
+- [Participants API](https://github.com/AleS900/prueba/blob/master/assets/index1.html)
+- [Election officials API](https://dev1646.d2xvici48hkxr5.amplifyapp.com)
+- [Elections results](https://github.com/CertProAWS/Proyect-2-Election-Day/tree/final/build)
