@@ -15,7 +15,7 @@ def getInvalid(event, context):
     path = event["path"]
     invalid = path.split("/")[-1] # ["user", "id"]
     response = table.scan(
-        FilterExpression=Attr('invalido').eq(True)
+        FilterExpression=Attr('invalido').true
     )
 
     item = response['Item']
@@ -64,7 +64,7 @@ def getCity(event, context):
     city = path.split("/")[-3] # ["user", "id"]
     body = json.loads(event["body"])
     response = table.scan(
-        FilterExpression=Attr('city').eq(city) & Attr('invalido').eq(True)
+        FilterExpression=Attr('city').body(city)
         
     )
     item = response['Item']
@@ -104,7 +104,7 @@ def getSchool(event, context):
     path = event["path"]
     school = path.split("/")[-1] # ["user", "id"]
     response = table.scan(
-        FilterExpression=Attr('school').eq(school) & Attr('invalido').eq(True)
+        FilterExpression=Attr('school').body(school)
     )
     item = response['Item']
     return {

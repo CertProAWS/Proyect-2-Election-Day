@@ -99,8 +99,7 @@ paths:
         httpMethod: "POST"
         
   #Denisse
-  /cabina/{cabina_id}:
-    
+  /cabina/{cabina_id}/invalidation/{invalido}:
     get:
       summary: 
       parameters:
@@ -115,7 +114,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws_proxy"
         uri:
-          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getMovie/invocations"
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getInvalid/invocations"
         httpMethod: "POST"
     put:
       summary: Create or update new record for cabina
@@ -150,7 +149,7 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws_proxy"
         uri:
-          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putMovie/invocations"
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putInvalid/invocations"
         httpMethod: "POST"
 
   /city/{city}/invalidation/{invalido}:
@@ -161,15 +160,51 @@ paths:
           in: path
           required: true
           description: city
-        - name: city
+        - name: invalido
           in: path
           required: true
-          description: city
+          description: invalido
       x-amazon-apigateway-integration:
         type: "aws_proxy"
         uri:
-          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getMovieByRoom/invocations"
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getCity/invocations"
         httpMethod: "POST"
+    put:
+      summary: Create or update new record for cabina
+      parameters:
+        - name: cabina_id
+          in: path
+          required: true
+          description: cabina ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+               invalido:
+                  type: boolean
+                city:
+                  type: string
+                school:
+                  type: string
+                resultadoImagen:
+                  type: int
+                resultadoFinal:
+                  type: int
+                ausentes:
+                  type: int
+                votosEmitidos:
+                  type: int
+                votosTotales:
+                  type: int
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putInvalid/invocations"
+        httpMethod: "POST"
+
   /school/{school}invalidation/{invalido}:
     get:
       summary: Returns  school are invalid
@@ -181,28 +216,40 @@ paths:
       x-amazon-apigateway-integration:
         type: "aws_proxy"
         uri:
-          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getRoom/invocations"
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:getSchool/invocations"
         httpMethod: "POST"
-    # put:
-    #   summary: Create or update a list of 
-    #   parameters:
-    #     - name: cabina_id
-    #       in: path
-    #       required: true
-    #       description: cabina ID
-    #   requestBody:
-    #     required: true
-    #     content:
-    #       application/json:
-    #         schema:
-    #           type: object
-    #           properties:
-    #             people:
-    #               type: string
-    #   x-amazon-apigateway-integration:
-    #     type: "aws_proxy"
-    #     uri:
-    #       Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putPeople/invocations"
-    #     httpMethod: "POST"
-
- 
+    put:
+      summary: Create or update new record for cabina
+      parameters:
+        - name: cabina_id
+          in: path
+          required: true
+          description: cabina ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+               invalido:
+                  type: boolean
+                city:
+                  type: string
+                school:
+                  type: string
+                resultadoImagen:
+                  type: int
+                resultadoFinal:
+                  type: int
+                ausentes:
+                  type: int
+                votosEmitidos:
+                  type: int
+                votosTotales:
+                  type: int
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:putSchool/invocations"
+        httpMethod: "POST"

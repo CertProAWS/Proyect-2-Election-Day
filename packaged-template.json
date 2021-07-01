@@ -3,144 +3,158 @@ Transform:
 - AWS::Serverless-2016-10-31
 Description: Election Day
 Resources:
-  GetVoter:
+  GetInvalidFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: getVoter
+      FunctionName: getInvalid
       Environment:
         Variables:
-          VOTERS_TABLE:
-            Ref: MyVotersTable
-      Handler: infoElection.getVoter
+          USERS_TABLE:
+            Ref: MyInvalidationTable
+      Handler: invalido.getInvalid
       Runtime: python3.6
-<<<<<<< HEAD
-      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
-=======
-      CodeUri: s3://proyecto-elecciones/2d09a10d385498d990ad33bd57b2cb87
->>>>>>> fc9ff19f569902f8ff3dbf0b6e284fcd5b6c8ec4
+      CodeUri: s3://bucketlabdos/5af34a092be0046b791390097565cce5
       Policies:
       - DynamoDBReadPolicy:
           TableName:
-            Ref: MyVotersTable
+            Ref: MyInvalidationTable
       Events:
-        GetVoter:
+        GetUsers:
           Type: Api
           Properties:
             RestApiId:
               Ref: MyAPI
-            Path: /voter/{voter_id}
+            Path: /invalid/{invalido}
             Method: GET
-  PutVoter:
+  PutInvalidFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: putVoter
+      FunctionName: putInvalid
       Environment:
         Variables:
-          VOTERS_TABLE:
-            Ref: MyVotersTable
-      Handler: infoElection.putVoter
+          USERS_TABLE:
+            Ref: MyInvalidationTable
+      Handler: invalid.putInvalid
       Runtime: python3.6
-<<<<<<< HEAD
-      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
-=======
-      CodeUri: s3://proyecto-elecciones/2d09a10d385498d990ad33bd57b2cb87
->>>>>>> fc9ff19f569902f8ff3dbf0b6e284fcd5b6c8ec4
+      CodeUri: s3://bucketlabdos/5af34a092be0046b791390097565cce5
       Policies:
       - DynamoDBWritePolicy:
           TableName:
-            Ref: MyVotersTable
+            Ref: MyInvalidationTable
       Events:
-        PutVoter:
+        GetUsers:
           Type: Api
           Properties:
             RestApiId:
               Ref: MyAPI
-            Path: /voter/{voter_id}
+            Path: /invalid/{invalid_id}
             Method: PUT
-  GetAbsentee:
+  GetCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: getAbsentee
+      FunctionName: getCity
       Environment:
         Variables:
-          VOTERS_TABLE:
-            Ref: MyVotersTable
-      Handler: infoElection.getAbsentee
+          USERS_TABLE:
+            Ref: MyInvalidationTable
+      Handler: city.getCity
       Runtime: python3.6
-<<<<<<< HEAD
-      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
-=======
-      CodeUri: s3://proyecto-elecciones/2d09a10d385498d990ad33bd57b2cb87
->>>>>>> fc9ff19f569902f8ff3dbf0b6e284fcd5b6c8ec4
+      CodeUri: s3://bucketlabdos/5af34a092be0046b791390097565cce5
       Policies:
       - DynamoDBReadPolicy:
           TableName:
-            Ref: MyVotersTable
+            Ref: MyInvalidationTable
       Events:
-        GetAbsentee:
+        GetUsers:
           Type: Api
           Properties:
             RestApiId:
               Ref: MyAPI
-            Path: /absentee/{absentee_id}
+            Path: /city/{city}
             Method: GET
-  PutAbsentee:
+  PutCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: putAbsentee
+      FunctionName: putCity
       Environment:
         Variables:
-          VOTERS_TABLE:
-            Ref: MyVotersTable
-      Handler: infoElection.putAbsentee
+          USERS_TABLE:
+            Ref: MyInvalidationTable
+      Handler: city.putCity
       Runtime: python3.6
-<<<<<<< HEAD
-      CodeUri: s3://bucketlabdos/fc8c97fab912cfce80dbfec68a8e9b9e
-=======
-      CodeUri: s3://proyecto-elecciones/2d09a10d385498d990ad33bd57b2cb87
->>>>>>> fc9ff19f569902f8ff3dbf0b6e284fcd5b6c8ec4
+      CodeUri: s3://bucketlabdos/5af34a092be0046b791390097565cce5
       Policies:
       - DynamoDBWritePolicy:
           TableName:
-            Ref: MyVotersTable
+            Ref: MyInvalidationTable
       Events:
-        PutAbsentee:
+        GetUsers:
           Type: Api
           Properties:
             RestApiId:
               Ref: MyAPI
-            Path: /absentee/{absentee_id}
+            Path: /city/{city}
             Method: PUT
-  S3Bucket:
-    Type: AWS::S3::Bucket
+  GetSchoolFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      BucketName: election-day-123
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: index.html
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: false
-        BlockPublicPolicy: false
-        IgnorePublicAcls: false
-        RestrictPublicBuckets: false
+      FunctionName: getSchool
+      Environment:
+        Variables:
+          USERS_TABLE:
+            Ref: MyInvalidationTable
+      Handler: school.getSchool
+      Runtime: python3.6
+      CodeUri: s3://bucketlabdos/5af34a092be0046b791390097565cce5
+      Policies:
+      - DynamoDBReadPolicy:
+          TableName:
+            Ref: MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /school/{school}
+            Method: GET
+  PutSchoolFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: putSchool
+      Environment:
+        Variables:
+          USERS_TABLE:
+            Ref: MyInvalidationTable
+      Handler: school.putSchool
+      Runtime: python3.6
+      CodeUri: s3://bucketlabdos/5af34a092be0046b791390097565cce5
+      Policies:
+      - DynamoDBWritePolicy:
+          TableName:
+            Ref: MyInvalidationTable
+      Events:
+        GetUsers:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyAPI
+            Path: /school/{school}
+            Method: PUT
   MyAPI:
     Type: AWS::Serverless::Api
     Properties:
-      Name: my-voters-api
+      Name: my-api-invalidation
       StageName: prod
-      Cors:
-        AllowMethods: '''POST,OPTIONS, GET, PUT'''
-        AllowHeaders: '''*'''
-        AllowOrigin: '''*'''
       DefinitionBody:
         Fn::Transform:
           Name: AWS::Include
           Parameters:
-            Location: s3://bucketlabdos/59fb167cea8471279b9eba766e065957
-  MyVotersTable:
+            Location: s3://bucketlabdos/37864e1092c256d0febf7b65dc93fd59
+  MyInvalidationTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: my-voters-table-app
+      TableName: my-invalidation-table
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5

@@ -1,6 +1,7 @@
 
 #!/bin/bash
-DEPLOYMENT_BUCKET="proyecto-elecciones"
+DEPLOYMENT_BUCKET="bucketlabdos"
+#proyecto-elecciones
 STACK_NAME="elecciones"
 
 while getopts ":bdpw" OPTION; do

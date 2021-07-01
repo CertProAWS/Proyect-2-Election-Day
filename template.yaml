@@ -134,8 +134,6 @@ Resources:
           AttributeType: S
   
   #Denisse:
-  Description: My Lambda Resources
-Resources:
   GetInvalidFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -143,7 +141,7 @@ Resources:
       Environment:
         Variables:
           USERS_TABLE: !Ref  MyInvalidationTable
-      Handler: invalido.getInvalid
+      Handler: invalidation.getInvalid
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -154,7 +152,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/invalid/{invalido}"
+            Path: "/cabina/{cabina_id}/invalidation/{invalido}"
             Method: GET
 
   PutInvalidFunction:
@@ -164,7 +162,7 @@ Resources:
       Environment:
         Variables:
           USERS_TABLE: !Ref  MyInvalidationTable
-      Handler: invalid.putInvalid
+      Handler: invalidation.putInvalid
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -175,7 +173,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/invalid/{invalid_id}"
+            Path: "/cabina/{cabina_id}/invalidation/{invalido}"
             Method: PUT
             
   GetCityFunction:
@@ -185,7 +183,7 @@ Resources:
       Environment:
         Variables:
           USERS_TABLE: !Ref  MyInvalidationTable
-      Handler: city.getCity
+      Handler: invalidation.getCity
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -196,7 +194,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/city/{city}"
+            Path: "/city/{city}/invalidation/{invalido}"
             Method: GET
 
   PutCityFunction:
@@ -206,7 +204,7 @@ Resources:
       Environment:
         Variables:
           USERS_TABLE: !Ref  MyInvalidationTable
-      Handler: city.putCity
+      Handler: invalidation.putCity
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -217,7 +215,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/city/{city}"
+            Path: "/city/{city}/invalidation/{invalido}"
             Method: PUT
   
   GetSchoolFunction:
@@ -227,7 +225,7 @@ Resources:
       Environment:
         Variables:
           USERS_TABLE: !Ref  MyInvalidationTable
-      Handler: school.getSchool
+      Handler: invalidation.getSchool
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -238,7 +236,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/school/{school}"
+            Path: "/school/{school}invalidation/{invalido}"
             Method: GET
 
   PutSchoolFunction:
@@ -248,7 +246,7 @@ Resources:
       Environment:
         Variables:
           USERS_TABLE: !Ref  MyInvalidationTable
-      Handler: school.putSchool
+      Handler: invalidation.putSchool
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -259,13 +257,13 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyAPI
-            Path: "/school/{school}"
+            Path: "/school/{school}invalidation/{invalido}"
             Method: PUT
 
   MyAPI:
     Type: AWS::Serverless::Api
     Properties:
-      Name: my-api-invalidation
+      Name: my-api-gateway
       StageName: prod
       DefinitionBody:
         Fn::Transform:
@@ -290,4 +288,3 @@ Resources:
           AttributeType: S
         - AttributeName: sk
           AttributeType: S
-  #
