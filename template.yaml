@@ -336,7 +336,6 @@ Resources:
   #             - POST
   #             - DELETE
   #             - HEAD
-  
   # PublicBucketPolicy:
   #   Type: AWS::S3::BucketPolicy
   #   Properties:
@@ -350,6 +349,28 @@ Resources:
   #           Resource:
   #           - !Join ['/', [!GetAtt [S3Bucket, Arn], '*']]
   #           Principal: '*'
+  #
+# S3UploadBucket:
+#    Type: AWS::S3::Bucket
+#    Properties:
+#      CorsConfiguration:
+#        CorsRules:
+#        - AllowedHeaders:
+#            - "*"
+#          AllowedMethods:
+#            - GET
+#            - PUT
+#            - HEAD
+#          AllowedOrigins:
+#            - "*"
+#            
+#  Outputs:
+#  APIendpoint:
+#    Description:
+#    Value: !Sub "https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com"
+#  S3UploadBucketName:
+#    Description: 
+#    Value: !Ref 'S3UploadBucket'   
   
   MyAPI:
     Type: AWS::Serverless::Api
@@ -389,25 +410,4 @@ Resources:
           AttributeType: S
         - AttributeName: sk
           AttributeType: S
-#
-# S3UploadBucket:
-#    Type: AWS::S3::Bucket
-#    Properties:
-#      CorsConfiguration:
-#        CorsRules:
-#        - AllowedHeaders:
-#            - "*"
-#          AllowedMethods:
-#            - GET
-#            - PUT
-#            - HEAD
-#          AllowedOrigins:
-#            - "*"
-#            
-#  Outputs:
-#  APIendpoint:
-#    Description:
-#    Value: !Sub "https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com"
-#  S3UploadBucketName:
-#    Description: 
-#    Value: !Ref 'S3UploadBucket'    
+ 
